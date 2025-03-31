@@ -11,7 +11,13 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Le Crypto Club - Coaching en Cryptomonnaies",
   description: "Votre porte d'entrée vers la liberté financière avec Le Crypto Club",
-    generator: 'v0.dev'
+  icons: {
+    icon: [
+      { url: "/LCCicon.png", type: "image/png" },
+      { url: "/favicon.ico", type: "image/x-icon" },
+    ],
+    apple: { url: "/LCCicon.png", type: "image/png" },
+  },
 }
 
 export default function RootLayout({
@@ -21,6 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className="dark">
+      <head>
+        <link rel="icon" href="/LCCicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/LCCicon.png" />
+      </head>
       <body className={inter.className}>
         {/* Background is positioned first in the DOM to ensure it's behind everything */}
         <CryptoBackground />
@@ -35,7 +46,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-
-import './globals.css'
