@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 8%;
+    --foreground: 0 0% 100%;
+
+    --card: 220 20% 10%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 45 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 20% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 45 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 45 100% 50% / 20%;
+    --input: 45 100% 50% / 20%;
+    --ring: 45 100% 50%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Amélioration de l'accessibilité tactile */
+@media (max-width: 768px) {
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px; /* Taille minimale recommandée pour les éléments tactiles */
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px; /* Évite le zoom automatique sur iOS */
+  }
+}
+
+/* Amélioration de la lisibilité sur mobile */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.875rem; /* text-3xl */
+  }
+  h2 {
+    font-size: 1.5rem; /* text-2xl */
+  }
+  h3 {
+    font-size: 1.25rem; /* text-xl */
+  }
+  p {
+    font-size: 0.875rem; /* text-sm */
+  }
+}
+
+/* Animations utilisées */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(245, 158, 11, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+  }
+}
+
+@keyframes borderGlow {
+  0%,
+  100% {
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+  50% {
+    border-color: rgba(245, 158, 11, 0.8);
+  }
+}
+
+/* Styles pour les cartes retournables */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.animate-float {
+  animation: float 6s infinite ease-in-out;
+}
+
+.animate-float-reverse {
+  animation: float 6s infinite ease-in-out reverse;
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-glow {
+  animation: glow 3s infinite ease-in-out;
+}
+
+.animate-border-glow {
+  animation: borderGlow 3s infinite ease-in-out;
+}
+
+/* Préférence pour réduire les animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-reverse,
+  .animate-pulse-slow,
+  .animate-shimmer,
+  .animate-glow,
+  .animate-border-glow,
+  .flip-card-inner {
+    animation: none;
+    transition: none;
+  }
+}
+
