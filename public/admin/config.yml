@@ -1,0 +1,158 @@
+backend:
+  name: git-gateway
+  branch: main # Branche sur laquelle les modifications seront poussées
+
+media_folder: "public/uploads" # Dossier où les médias seront stockés
+public_folder: "/uploads" # URL publique des médias
+
+locale: 'fr' # Langue de l'interface d'administration
+
+site_url: https://lecryptoclub.com
+display_url: https://lecryptoclub.com
+
+# Logo de l'interface d'administration
+logo_url: /logocc.jpg
+
+# Collections de contenu
+collections:
+  # Collection pour les membres de l'équipe
+  - name: "team"
+    label: "Équipe"
+    folder: "content/team"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "ID", name: "id", widget: "number" }
+      - { label: "Nom", name: "name", widget: "string" }
+      - { label: "Rôle", name: "role", widget: "string" }
+      - { label: "Photo", name: "image", widget: "image" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Fondateur", name: "isFounder", widget: "boolean", default: false }
+      - label: "Réseaux sociaux"
+        name: "socials"
+        widget: "object"
+        fields:
+          - { label: "Twitter", name: "twitter", widget: "string", required: false }
+          - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
+          - { label: "GitHub", name: "github", widget: "string", required: false }
+          - { label: "Email", name: "mail", widget: "string", required: false }
+
+  # Collection pour les témoignages
+  - name: "testimonials"
+    label: "Témoignages"
+    folder: "content/testimonials"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "ID", name: "id", widget: "number" }
+      - { label: "Nom", name: "name", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Contenu", name: "content", widget: "text" }
+
+  # Collection pour les articles de blog
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date de publication", name: "date", widget: "datetime" }
+      - { label: "Image principale", name: "image", widget: "image" }
+      - { label: "Extrait", name: "excerpt", widget: "text" }
+      - { label: "Temps de lecture (min)", name: "readTime", widget: "number" }
+      - { label: "Catégorie", name: "category", widget: "select", options: ["Débutant", "Analyse Technique", "DeFi", "NFTs", "Sécurité", "Régulation", "Bitcoin", "Ethereum"] }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+
+  # Collection pour les outils
+  - name: "tools"
+    label: "Outils"
+    folder: "content/tools"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "ID", name: "id", widget: "number" }
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Icône", name: "icon", widget: "select", options: ["Calculator", "BookOpen", "AlertTriangle", "Book", "Globe", "Diamond", "BarChart", "GraduationCap", "Smartphone", "Search", "Target", "MessageCircle"] }
+      - { label: "Fonctionnalités", name: "features", widget: "list" }
+      - { label: "Lien", name: "link", widget: "string" }
+
+  # Collection pour les pages principales
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Page d'accueil"
+        name: "home"
+        file: "content/pages/home.md"
+        fields:
+          - { label: "Titre Hero", name: "heroTitle", widget: "string" }
+          - { label: "Sous-titre Hero", name: "heroSubtitle", widget: "text" }
+          - { label: "Statistique 1 - Chiffre", name: "stat1Number", widget: "string" }
+          - { label: "Statistique 1 - Texte", name: "stat1Text", widget: "string" }
+          - { label: "Statistique 2 - Chiffre", name: "stat2Number", widget: "string" }
+          - { label: "Statistique 2 - Texte", name: "stat2Text", widget: "string" }
+          - { label: "Statistique 3 - Chiffre", name: "stat3Number", widget: "string" }
+          - { label: "Statistique 3 - Texte", name: "stat3Text", widget: "string" }
+          - { label: "Titre Features", name: "featuresTitle", widget: "string" }
+          - { label: "Titre Témoignages", name: "testimonialsTitle", widget: "string" }
+          - { label: "Sous-titre Témoignages", name: "testimonialsSubtitle", widget: "string" }
+          - { label: "Titre Tarifs", name: "pricingTitle", widget: "string" }
+          - { label: "Sous-titre Tarifs", name: "pricingSubtitle", widget: "string" }
+          - { label: "Titre FAQ", name: "faqTitle", widget: "string" }
+          - { label: "Sous-titre FAQ", name: "faqSubtitle", widget: "string" }
+
+      - label: "Page Équipe"
+        name: "team"
+        file: "content/pages/team.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Titre Fondateurs", name: "foundersTitle", widget: "string" }
+          - { label: "Titre Équipe", name: "teamTitle", widget: "string" }
+
+      - label: "Page Outils"
+        name: "tools"
+        file: "content/pages/tools.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+
+      - label: "Page Contact"
+        name: "contact"
+        file: "content/pages/contact.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Discord", name: "discord", widget: "string" }
+          - { label: "Support", name: "support", widget: "string" }
+
+  # Collection pour les formules d'abonnement
+  - name: "pricing"
+    label: "Formules d'abonnement"
+    folder: "content/pricing"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nom", name: "name", widget: "string" }
+      - { label: "Prix", name: "price", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Fonctionnalités", name: "features", widget: "list" }
+      - { label: "Limitations", name: "limitations", widget: "list", required: false }
+      - { label: "Texte du bouton", name: "cta", widget: "string" }
+      - { label: "Populaire", name: "popular", widget: "boolean", default: false }
+
+  # Collection pour les questions fréquentes
+  - name: "faq"
+    label: "FAQ"
+    folder: "content/faq"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "ID", name: "id", widget: "number" }
+      - { label: "Icône", name: "icon", widget: "string" }
+      - { label: "Question", name: "question", widget: "string" }
+      - { label: "Réponse", name: "answer", widget: "text" }
+
